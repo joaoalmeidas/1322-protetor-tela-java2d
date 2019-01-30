@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -32,19 +33,25 @@ public class ProtetorDeTela extends JPanel implements ActionListener{
 		
 		for(int i = 0; i < limite; i++) {
 			
-			g2d.setColor(new Color(aleatorio.nextInt(256), aleatorio.nextInt(256), aleatorio.nextInt(256)));
+			
 			
 			int forma = aleatorio.nextInt(2);
-			int pontoX = aleatorio.nextInt(getWidth());
-			int pontoY = aleatorio.nextInt(getHeight());
+			int pontoX1 = aleatorio.nextInt(getWidth());
+			int pontoY1 = aleatorio.nextInt(getHeight());
+			
+			g2d.setPaint(new GradientPaint(getWidth()/8, getHeight()/8,
+					new Color(aleatorio.nextInt(256), aleatorio.nextInt(256), aleatorio.nextInt(256)),
+					getWidth()/2, getHeight()/2,
+					new Color(aleatorio.nextInt(256), aleatorio.nextInt(256), aleatorio.nextInt(256))));
+			
 			
 			if(forma == 0) {
 				
-				g2d.fill(new Ellipse2D.Double(pontoX, pontoY, aleatorio.nextInt(getWidth() - pontoX), aleatorio.nextInt(getHeight() - pontoY)));
+				g2d.fill(new Ellipse2D.Double(pontoX1, pontoY1, aleatorio.nextInt(getWidth() - pontoX1), aleatorio.nextInt(getHeight() - pontoY1)));
 				
 			}else if(forma == 1) {
 				
-				g2d.fill(new Rectangle2D.Double(pontoX, pontoY, aleatorio.nextInt(getWidth() - pontoX), aleatorio.nextInt(getHeight() - pontoY)));
+				g2d.fill(new Rectangle2D.Double(pontoX1, pontoY1, aleatorio.nextInt(getWidth() - pontoX1), aleatorio.nextInt(getHeight() - pontoY1)));
 				
 			}
 			
