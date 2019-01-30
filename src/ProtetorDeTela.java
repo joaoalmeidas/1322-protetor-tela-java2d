@@ -1,7 +1,10 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.security.SecureRandom;
 
 import javax.swing.JPanel;
@@ -25,31 +28,23 @@ public class ProtetorDeTela extends JPanel implements ActionListener{
 	public void paintComponent(Graphics g){
 		
 		super.paintComponent(g);
+		Graphics2D g2d = (Graphics2D) g;
 		
 		for(int i = 0; i < limite; i++) {
 			
-			g.setColor(new Color(aleatorio.nextInt(256), aleatorio.nextInt(256), aleatorio.nextInt(256)));
+			g2d.setColor(new Color(aleatorio.nextInt(256), aleatorio.nextInt(256), aleatorio.nextInt(256)));
 			
-			int forma = aleatorio.nextInt(4);
+			int forma = aleatorio.nextInt(2);
 			int pontoX = aleatorio.nextInt(getWidth());
 			int pontoY = aleatorio.nextInt(getHeight());
 			
 			if(forma == 0) {
 				
-				g.drawLine(pontoX, pontoY, aleatorio.nextInt(getWidth()), aleatorio.nextInt(getHeight()));
+				g2d.fill(new Ellipse2D.Double(pontoX, pontoY, aleatorio.nextInt(getWidth() - pontoX), aleatorio.nextInt(getHeight() - pontoY)));
 				
 			}else if(forma == 1) {
 				
-				g.fillRect(pontoX, pontoY, aleatorio.nextInt(getWidth() - pontoX), aleatorio.nextInt(getHeight() - pontoY));
-				
-			}else if(forma == 2) {
-				
-				g.fillOval(pontoX, pontoY, aleatorio.nextInt(getWidth() - pontoX), aleatorio.nextInt(getHeight() - pontoY));
-				
-			}else if(forma == 3) {
-				
-				g.fillArc(pontoX, pontoY, aleatorio.nextInt(getWidth() - pontoX), aleatorio.nextInt(getHeight() - pontoY), 
-						aleatorio.nextInt(360), aleatorio.nextInt(360));
+				g2d.fill(new Rectangle2D.Double(pontoX, pontoY, aleatorio.nextInt(getWidth() - pontoX), aleatorio.nextInt(getHeight() - pontoY)));
 				
 			}
 			
